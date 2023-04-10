@@ -32,7 +32,7 @@ def play_game():
 while True:
     input("Press enter to roll the dice!")
     play_game()
-    if input("Do you want to play again? (y/n)").lower() != "y":
+    if input("If you wanna play again press (y)\n").lower() != "y":
         break
 
 print("Thanks for playing!")
