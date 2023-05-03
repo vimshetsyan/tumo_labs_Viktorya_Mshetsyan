@@ -1,18 +1,23 @@
 import time
 
 
-def countdown(count):
-    while count:   # it is to say while 'count' > 0 or is True
-        minutes, seconds = divmod(count, 60)  # Divmod display the quotient and the remainder of 'count' divided by 60:
-        timer = '{:02d}:{:02d}'.format(minutes, seconds)  # Formatting timer to be visually more understandable
-        print(timer)  # printing remaining time
-        time.sleep(1)  # it waits a second because we need to countdown every second
-        count -= 1  # we need to subtract 1 from the initial second's /
-        # value because we just coded the program to sleep 1 second
+def countdown(t):
 
-    print('Your time is up') 
+    while t:
+        mins, secs = divmod(t, 60)
+        hours = 0
+        if mins >= 60:
+            hours, mins = divmod(mins, 60)
+        timer = '{:02d}:{:02d}:{:02d}'.format(hours, mins, secs)
+        print(timer, end="\r")
+        time.sleep(1)
+        t -= 1
+        print(timer)
+
+    print("Time's up!")
 
 
-count_down = input("Enter the time in seconds: ")  # inputting value as seconds
-
-countdown(int(count_down))  # assigning value of 'count_down' to 'countdown' function
+input_time = input("Enter the time in format hh:mm:ss: ")
+hours, minutes, seconds = map(int, input_time.split(':'))
+total_seconds = hours*3600 + minutes*60 + seconds
+countdown(total_seconds)
